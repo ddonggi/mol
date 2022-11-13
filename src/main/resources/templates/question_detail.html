@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<div class="content-container">
+    <h1 th:text="${question.title}">제목</h1>
+    <div class="context-container">
+        <div th:text="${question.content}">내용</div>
+    </div>
+
+    <!--  답변의 개수 표시 -->
+    <div class ="answer-container">
+        <h2 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h2>
+        <!-- 답변 반복 -->
+        <div class="answer-list">
+            <div class="answer" th:each="answer : ${question.answerList}" >
+                <div th:text="${answer.content}"></div>
+                <div th:text="${#temporals.format(answer.createDate,'yyyy-MM-dd HH:mm')}"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 답변 작성 -->
+    <form th:action="@{|/answer/create/${question.id}|}" method="post">
+        <label for="content">답변</label><textarea name="content" id="content" rows="15"></textarea>
+        <input type="submit" value="답변등록">
+    </form>
+</div>
