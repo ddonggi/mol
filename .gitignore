@@ -38,3 +38,6 @@ out/
 
 ### rsa key ###
 id_rsa
+
+### config
+src/main/resources/application.properties
