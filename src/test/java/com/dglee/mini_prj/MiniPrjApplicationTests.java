@@ -144,7 +144,7 @@ class MiniPrjApplicationTests {
         Answer answer = optionalAnswer.get();
        assertEquals(2,answer.getQuestion().getId()); //답변의 질문 id 가 2인지 비교
     }
-    
+
     //질문데이터에서 답변 조회
     @Transactional
     @Test

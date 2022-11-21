@@ -1,20 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>홈</title>
-</head>
-<body>
+<html layout:decorate="~{layout/layout}">
+<div layout:fragment="content">
     <h2>홈페이지</h2>
-    <button class="signup">가입을 해보세요</button>
-    <button class="board">게시판</button>
-</body>
-<script>
-    document.querySelector(".signup").addEventListener('click',()=>{
-        location.href="/signup";
-    })
-    document.querySelector(".board").addEventListener('click',()=>{
-        location.href="/question/list";
-    })
-</script>
+    <a class="signup" th:href="@{/signup}"><button>가입을 해보세요</button></a>
+    <a class="board" th:href="@{/question/list}"><button>게시판</button></a>
+</div>
+<script layout:fragment="js" th:src="@{/js/index.js}"></script>
 </html>

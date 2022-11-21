@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-<div class="content-container">
+<html layout:decorate="~{layout/layout}">
+<div class="content-container" layout:fragment="content">
     <h1 th:text="${question.title}">제목</h1>
     <div class="context-container">
         <div th:text="${question.content}">내용</div>
@@ -22,3 +22,4 @@
         <input type="submit" value="답변등록">
     </form>
 </div>
+</html>

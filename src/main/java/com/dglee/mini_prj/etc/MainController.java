@@ -4,6 +4,7 @@ package com.dglee.mini_prj.etc;
  */
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,4 +15,7 @@ public class MainController {
     public String root() {
         return "index";
     }
+
+    @GetMapping("signup")
+    public String signUp(){ return "signup";}
 }
