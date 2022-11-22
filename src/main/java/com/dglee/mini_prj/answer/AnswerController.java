@@ -22,7 +22,7 @@ public class AnswerController {
     private final AnswerService answerService;
 
     @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable("id") Integer id, @RequestParam String content){
+    public String createAnswer(@PathVariable("id") Integer id, @RequestParam String content){
         Question question = questionService.getQuestion(id);
         answerService.create(id,question,content);
         return String.format("redirect:/question/detail/%s", id);

@@ -7,6 +7,7 @@ import com.dglee.mini_prj.util.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,5 +27,11 @@ public class QuestionService {
             return optionalQuestion.get();
         else
             throw new DataNotFoundException("question not found");
+    }
+
+    public void create(String title, String content){
+        QuestionDTO questionDTO = new QuestionDTO(title,content,LocalDateTime.now());
+        Question question = questionDTO.toEntity();
+        questionRepository.save(question);
     }
 }

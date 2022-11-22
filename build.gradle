@@ -35,6 +35,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
 //    runtimeOnly 'org.postgresql:postgresql'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'//화면에서 입력 받은 값을 검증하는데 필요
 
 }
 

@@ -6,10 +6,10 @@ package com.dglee.mini_prj.question;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/question")
@@ -34,7 +34,20 @@ public class QuestionController {
     }
 
     @GetMapping("/create")
-    public String questionCreate(){
+    public String questionCreate(QuestionForm questionForm){
         return "question_form";
+    }
+
+    @PostMapping("/create")
+//    public String questionCreate(@RequestParam String title, @RequestParam String content){
+    public String questionCreate(
+            @Valid QuestionForm questionForm, // @Valid 애노테이션을 통해 questionForm 의 @NotEmpty 등이 작동한다
+            BindingResult bindingresult // @Valid 애노테이션으로 인해 검증된 결과를 의미하는 객체
+    ){
+        //TODO : 질문을 저장한다.
+        if(bindingresult.hasErrors())
+            return "question_form";
+        questionService.create(questionForm.getTitle(),questionForm.getContent());
+        return "redirect:/question/list"; // 질문 저장 후 질문 목록으로 이동
     }
 }

@@ -36,4 +36,9 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
 
+    public Question(String title, String content, LocalDateTime createDate) {
+        this.title=title;
+        this.content=content;
+        this.createDate=createDate;
+    }
 }

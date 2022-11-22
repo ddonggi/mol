@@ -26,6 +26,6 @@ public class AnswerDTO {
     private Question question;
 
     public Answer toEntity(){
-        return new Answer(content,createDate,question);
+        return new Answer(this.content,this.createDate,this.question);
     }
 }
