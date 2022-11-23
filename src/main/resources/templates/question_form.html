@@ -4,21 +4,35 @@
     <form th:action="@{/question/create}" method="post" th:object="${questionForm}">
 <!--        오류를 표시하기 위해서는 타임리프의 th:object 속성이 반드시 필요하다.
 th:object를 사용하여 폼의 속성들이 QuestionForm의 속성들로 구성된다는 점을 타임리프 엔진에 알려줘야 하기 때문이다.  -->
-        <div th:if="${#fields.hasAnyErrors()}" role="alert">
-            <div th:each="err:${#fields.allErrors()}" th:text="${err}"> </div>
-        </div>
+<!--        <div th:if="${#fields.hasAnyErrors()}" role="alert">-->
+<!--            <div th:each="err:${#fields.allErrors()}" th:text="${err}"> </div>-->
+<!--        </div>-->
 
         <div class="question-subject">
             <label for="title">제목</label>
-            <input type="text" name="title" id="title" th:field="*{title}">
-<!--            <input type="text" name="title" id="title" th:field="*{title}" required="required">-->
+            <div th:if="${#fields.hasErrors('title')}" role="alert">
+                <input type="text" th:field="*{title}" th:placeholder="${#fields.errors('title').get(0)}" class="text-container"/>
+            </div>
+            <div th:unless="${#fields.hasErrors('title')}" role="alert">
+                <input type="text" th:field="*{title}" class="text-container"/>
+            </div>
+<!--            <input type="text" name="title" id="title" th:field="*{title}">-->
+<!--            <input type="text" name="title" id="title" th:field="*{title}" required>-->
         </div>
         <div class="question-content">
             <label for="content" class="form-label">내용</label>
-            <textarea name="content" id="content" rows="10" th:field="*{content}"></textarea>
-<!--            <textarea name="content" id="content" rows="10" th:field="*{content}" required="required"></textarea>-->
+            <div th:if="${#fields.hasErrors('content')}" role="alert">
+                <textarea rows="10" th:field="*{content}" th:placeholder="${#fields.errors('content').get(0)}" class="text-container"></textarea>
+            </div>
+            <div th:unless="${#fields.hasErrors('content')}" role="alert">
+                <textarea rows="10" th:field="*{content}" class="text-container"></textarea>
+            </div>
+
+<!--            <textarea name="content" id="content" rows="10" th:field="*{content}"></textarea>-->
+<!--            <textarea name="content" id="content" rows="10" th:field="*{content}" required></textarea>-->
         </div>
         <input type="submit" value="저장하기">
+        <a th:href="@{/question/list}">목록</a>
     </form>
 </div>
 </html>

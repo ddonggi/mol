@@ -36,7 +36,14 @@ input[type=submit] {
     color: white;
     font-family: inherit;
 }
-
+/* 입력 필수 항목 */
+*:required {
+    /*background-color: gold;*/
+}
+/* 텍스트 입력창에 포커스가 왔을때 */
+.text-container:focus{
+    background: floralwhite;
+}
 /* 게시판 리스트 */
 .table{
     width: 100%;

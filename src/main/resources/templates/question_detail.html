@@ -4,7 +4,10 @@
     <div class="context-container">
         <div th:text="${question.content}">내용</div>
     </div>
-
+<!--    TODO : 작성자 본인만 삭제 가능하게-->
+    <form>
+        <input type="button" th:action="@{|/question/delete/${question.id}|}" value="삭제하기" method="get" />
+    </form>
     <!--  답변의 개수 표시 -->
     <div class ="answer-container">
         <h2 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h2>
@@ -18,8 +21,10 @@
     </div>
     <!-- 답변 작성 -->
     <form th:action="@{|/answer/create/${question.id}|}" method="post">
-        <label for="content">답변</label><textarea name="content" id="content" rows="15"></textarea>
-        <input type="submit" value="답변등록">
+        <label for="content">답변</label>
+        <textarea name="content" id="content" rows="15"></textarea>
+        <input type="submit" value="답변등록" />
     </form>
+    <a th:href="@{/question/list}" th:text="목록으로"></a>
 </div>
 </html>

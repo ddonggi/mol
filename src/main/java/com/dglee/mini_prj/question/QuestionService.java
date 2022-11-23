@@ -34,4 +34,9 @@ public class QuestionService {
         Question question = questionDTO.toEntity();
         questionRepository.save(question);
     }
+
+    public void delete(Integer id) {
+//        Question question = Question.builder().build();
+//        questionRepository.delete(question);
+    }
 }

@@ -2,6 +2,7 @@ package com.dglee.mini_prj.question;
 
 import com.dglee.mini_prj.answer.Answer;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

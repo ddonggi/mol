@@ -47,7 +47,14 @@ public class QuestionController {
         //TODO : 질문을 저장한다.
         if(bindingresult.hasErrors())
             return "question_form";
-        questionService.create(questionForm.getTitle(),questionForm.getContent());
+        questionService.create(questionForm.getTitle(), questionForm.getContent());
         return "redirect:/question/list"; // 질문 저장 후 질문 목록으로 이동
+    }
+
+    @GetMapping("/delete/{id}")
+    public String questionDelete(@PathVariable Long id){
+//        questionService.delete(id);
+        System.out.println("to delete id : " + id );
+        return "redirect:/question/list";
     }
 }
