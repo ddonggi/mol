@@ -30,6 +30,7 @@ public class Answer {
         this.createDate = createDate;
         this.question = question;
     }
+    // 여러개의 답변은 하나의 질문에 달릴 수 있다
     @ManyToOne
     private Question question;
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class QuestionDTO {
     private Integer id;
     private String title;
