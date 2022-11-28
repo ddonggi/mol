@@ -17,7 +17,8 @@ th:object를 사용하여 폼의 속성들이 QuestionForm의 속성들로 구�
                 <input type="text" th:field="*{title}" class="text-container"/>
             </div>
 <!--            <input type="text" name="title" id="title" th:field="*{title}">-->
-<!--            <input type="text" name="title" id="title" th:field="*{title}" required>-->
+<!--            <input type="text" th:field="*{title}" required>-->
+<!--  required 속성이 있지만, QuestionForm을 작성하는 이유는 클라이언트가 브라우저만 있는것이 아니기 때문에 백엔드에서 검증을 하는 것이 안전하기 때문이다 -->
         </div>
         <div class="question-content">
             <label for="content" class="form-label">내용</label>
@@ -27,9 +28,8 @@ th:object를 사용하여 폼의 속성들이 QuestionForm의 속성들로 구�
             <div th:unless="${#fields.hasErrors('content')}" role="alert">
                 <textarea rows="10" th:field="*{content}" class="text-container"></textarea>
             </div>
-
 <!--            <textarea name="content" id="content" rows="10" th:field="*{content}"></textarea>-->
-<!--            <textarea name="content" id="content" rows="10" th:field="*{content}" required></textarea>-->
+<!--            <textarea rows="10" th:field="*{content}" required></textarea>-->
         </div>
         <input type="submit" value="저장하기">
         <a th:href="@{/question/list}">목록</a>

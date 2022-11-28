@@ -14,8 +14,11 @@ import java.time.LocalDateTime;
 public class AnswerService {
     private final AnswerRepository answerRepository;
 
-    public void create(Integer id,Question question, String content){
-        AnswerDTO answerDTO = new AnswerDTO(id, content, LocalDateTime.now(),question);
+    public void create(Question question, String content){
+//        AnswerDTO answerDTO = new AnswerDTO(id, content, LocalDateTime.now(),question);
+//        AnswerDTO answerDTO = new AnswerDTO(id, content, LocalDateTime.now(),question);
+        AnswerDTO answerDTO = AnswerDTO.builder()
+                .content(content).createDate(LocalDateTime.now()).question(question).build();
         Answer answer = answerDTO.toEntity();
         answerRepository.save(answer);
     }

@@ -20,10 +20,12 @@
         </div>
     </div>
     <!-- 답변 작성 -->
-    <form th:action="@{|/answer/create/${question.id}|}" method="post">
+    <!-- java 의 question 객체값을 더하는 것이기 때문에 (문자열 연결 :양쪽에 | | 로 )감싸 준다 -->
+    <form th:action="@{|/answer/create/${question.id}|}"  th:object="${answerForm}" method="post">
         <label for="content">답변</label>
-        <textarea name="content" id="content" rows="15"></textarea>
-        <input type="submit" value="답변등록" />
+        <textarea th:if="${#fields.hasErrors('content')}" th:field="*{content}" th:placeholder="${#fields.errors('content').get(0)}" name="content" id="content"  rows="15" class="text-container" minlength="3"></textarea>
+        <textarea th:unless="${#fields.hasErrors('content')}" th:field="*{content}" name="content" id="content" rows="15" class="text-container" minlength="3"></textarea>
+        <input type="submit" value="답변등록"/>
     </form>
     <a th:href="@{/question/list}" th:text="목록으로"></a>
 </div>
