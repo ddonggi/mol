@@ -50,7 +50,6 @@ public class QuestionController {
             @Valid QuestionForm questionForm, // @Valid 애노테이션을 통해 questionForm 의 @NotEmpty 등이 작동한다
             BindingResult bindingresult // @Valid 애노테이션으로 인해 검증된 결과를 의미하는 객체
     ){
-        //TODO : 질문을 저장한다.
         if(bindingresult.hasErrors())
             return "question_form";
         questionService.create(questionForm.getTitle(), questionForm.getContent());
