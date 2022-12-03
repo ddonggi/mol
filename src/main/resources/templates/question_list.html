@@ -13,14 +13,22 @@
         <tbody>
 <!--            <tr th:each="question,loop : ${questionList}">-->
             <tr th:each="question,loop : ${paging}">
-        <!--        <td th:if="${loop.first}" th:text="첫빠따"></td>-->
+                <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+
+                <!--        <td th:if="${loop.first}" th:text="첫빠따"></td>-->
         <!--        <td th:if="${loop.first}" th:text="내가처음임"></td>-->
         <!--        <td th:if="${!loop.first}" th:text="${question.title}"></td>-->
         <!--        <td th:if="${!loop.first}" th:text="${question.createDate}"></td>-->
-                <td th:text="${loop.count}"></td>
+<!--                <td th:text="${loop.count}"></td>-->
                 <td>
                     <!-- url 주소를 나타낼때는 @{} 을 써야 하고, java 의 question 객체값을 더하는 것이기 때문에 (문자열 연결 :양쪽에 | | 로 )감싸 준다-->
                     <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.title}"></a>
+                    <span class="answer-count"
+                          th:if="${#lists.size(question.answerList) > 0}"
+                          th:text="${#lists.size(question.answerList)}">
+                    </span>
+<!--                    th:if="${#lists.size(question.answerList) > 0}"로 답변이 있는지 조사하고, th:text="${#lists.size(question.answerList)}"로 답변 개수를 표시했다.-->
+<!--                    #list.size(이터러블객체)는 이터러블 객체의 사이즈를 반환하는 타임리프의 유틸리티이다.-->
                 </td>
                     <!-- 날짜 객체를 날짜 포맷에 맞게 변환 -->
                 <td th:text="${#temporals.format(question.createDate,'yyyy-MM-dd HH:mm')}"></td>
