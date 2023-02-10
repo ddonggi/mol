@@ -20,11 +20,11 @@ public class QuestionDTO {
     private LocalDateTime createDate;
     private List<Answer> answerList;
 
-    public QuestionDTO(String title, String content, LocalDateTime createDate) {
+/*    public QuestionDTO(String title, String content, LocalDateTime createDate) {
         this.title=title;
         this.content=content;
         this.createDate=createDate;
-    }
+    }*/
 
     public Question toEntity(){
         return new Question(this.title,this.content,this.createDate);

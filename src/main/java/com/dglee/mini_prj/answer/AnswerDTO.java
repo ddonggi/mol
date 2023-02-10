@@ -8,10 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
-
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,9 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 public class AnswerDTO {
     private Integer id;
-
     private String content;
-
     private LocalDateTime createDate;
     private Question question;
 
