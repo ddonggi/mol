@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
  * Author : dglee
  * Create : 2023/02/19 1:40 PM
  * Description : 회원가입 검증 폼
- * username은 필수항목이고 길이가 3-25 사이여야 한다는 검증조건을 설정했다.
+ * username은 필수항목이고 길이가 3-10 사이 여야 한다는 검증조건을 설정했다.
  * @Size는 폼 유효성 검증시 문자열의 길이가 최소길이(min)와 최대길이(max) 사이에 해당하는지를 검증한다.
  * password1과 password2는 "비밀번호"와 "비밀번호확인"에 대한 속성이다.
  *  로그인 할때는 비밀번호가 한번만 필요하지만 회원가입시에는 입력한 비밀번호가 정확한지 확인하기 위해 2개의 필드가 필요하다.
@@ -23,10 +23,11 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 public class UserCreateForm {
-    @Size(min = 3,max = 25)
+    @Size(min = 3,max = 10)
     @NotEmpty(message = "사용자 ID는 필수 항목 입니다.")
     private String username;
 
+    @Size(min = 3,max = 18)
     @NotEmpty(message = "비밀번호는 필수 항목 입니")
     private String password;
     @NotEmpty(message = "비밀번호 확인은 필수 항목 입니다")
