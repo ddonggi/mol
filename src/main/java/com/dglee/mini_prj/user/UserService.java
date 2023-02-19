@@ -45,7 +45,7 @@ public class UserService {
         //DTO
         SiteUserDTO userDTO = SiteUserDTO.builder()
                 .userName(userName)
-                .password(passwordEncoder.encode(password)) //시큐리티의 BCryptPasswordEncoder 클래스를 사용하여 암호화
+                .password(passwordEncoder.encode(password)) //빈으로 등록한 시큐리티의 BCryptPasswordEncoder 클래스를 사용하여 암호화
                 .email(email)
                 .build();
         SiteUser user = userDTO.toEntity();
