@@ -24,6 +24,12 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
 
+    @GetMapping("/login")
+    public String login(){
+        return "login_form"; // 로그인을 위한 템플릿 렌더링
+    }
+    // NOTE : 실제 로그인을 진행하는 @PostMapping 방식의 메서드는 스프링 시큐리티가 대신 처리하므로 직접 구현할 필요가 없다. ( SecurityConfig 참조 )
+
     @GetMapping("/signup")
     public String signup(UserCreateForm userCreateForm){
         return "signup_form"; // 회원가입을 위한 템플릿 렌더링
@@ -49,7 +55,7 @@ public class UserController {
             return "signup_form";
         }catch(Exception e) {
             e.printStackTrace();
-            bindingResult.reject("signupFailed", e.getMessage());
+            bindingResult.reject("signupFailed", e.getMessage()); // bindingResult.reject(오류코드, 오류메시지)는 특정 필드의 오류가 아닌 일반적인 오류를 등록할때 사용한다.
             return "signup_form";
         }
 
