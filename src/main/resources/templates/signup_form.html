@@ -10,8 +10,10 @@
     <div class="mb-3">
       <label for="username" class="form-label">사용자ID</label>
         <div th:if="${#fields.hasErrors('username')}" role="alert">
-            <input type="text" th:field="*{username}" th:placeholder="${#fields.errors('username').get(0)}" class="text-container"/>
+<!--            <input type="text" th:field="*{username}" th:placeholder="${#fields.errors('username').get(0)}" class="text-container"/>-->
+            <input type="text" th:field="*{username}" th:errorclass="error" th:errors="*{username}" class="text-container"/>
         </div>
+
         <div th:unless="${#fields.hasErrors('username')}" role="alert">
             <input type="text" th:field="*{username}" class="text-container"/>
         </div>
@@ -21,6 +23,7 @@
       <label for="password" class="form-label">비밀번호</label>
         <div th:if="${#fields.hasErrors('password')}" role="alert">
             <input type="password" th:field="*{password}" th:placeholder="${#fields.errors('password').get(0)}" class="text-container"/>
+
         </div>
         <div th:unless="${#fields.hasErrors('password')}" role="alert">
             <input type="password" th:field="*{password}" class="text-container"/>

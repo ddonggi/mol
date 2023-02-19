@@ -1,6 +1,7 @@
 package com.dglee.mini_prj.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,22 @@ public class UserController {
             bindingResult.rejectValue("password2","passwordIncorrect","2개의 패스워드가 일치하지 않습니다"); // rejectValue 오류 발생 시킴
             return "signup_form";
         }
-        userService.create(userCreateForm.getUsername(),userCreateForm.getPassword(),userCreateForm.getEmail());
+
+
+        try {
+            userService.create(userCreateForm.getUsername(),
+                    userCreateForm.getEmail(), userCreateForm.getPassword());
+        }catch(DataIntegrityViolationException e) {
+            e.printStackTrace();
+//            bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
+            bindingResult.rejectValue("username","signupFailed", "이미 등록된 사용자입니다.");
+            return "signup_form";
+        }catch(Exception e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", e.getMessage());
+            return "signup_form";
+        }
+
         return "redirect:/";
     }
 }
