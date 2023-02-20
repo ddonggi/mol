@@ -2,6 +2,8 @@ package com.dglee.mini_prj.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -113,5 +115,13 @@ public class SecurityConfig {
     * 데이터베이스에서 사용자를 조회하는 서비스(UserSecurityService)를 만들고 그 서비스를 스프링 시큐리티에 등록 해야 한다.
     * 하지만 UserSecurityService 를 만들고 등록하기 전에 UserSecurityService 에서 필요한 UserRepository, UserRole 등을 먼저 준비해야 한다.
     * */
-
+    /*
+     * AuthenticationManager 빈을 생성했다.
+     * AuthenticationManager는 스프링 시큐리티의 인증을 담당한다.
+     * AuthenticationManager 빈 생성시 스프링의 내부 동작으로 인해 위에서 작성한 UserSecurityService와 PasswordEncoder가 자동으로 설정된다.
+     * */
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 }

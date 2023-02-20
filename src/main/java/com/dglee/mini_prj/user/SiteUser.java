@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 /**
  * PackageName : com.dglee.mini_prj.user
@@ -23,7 +24,7 @@ import javax.persistence.*;
 public class SiteUser {
 
     /*
-    * SiteUser로 하는 이유는 User 클래스가 이미 스프링 시큐리티에 있기 때문에, 혼선을 막기 위
+    * SiteUser로 하는 이유는 User 클래스가 이미 스프링 시큐리티에 있기 때문에, 혼선을 막기 위함
     * */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +36,7 @@ public class SiteUser {
     private String password;
 
     @Column(unique = true)
+    @Email
     private String email;
 
     public SiteUser(String userName, String password, String email) {
