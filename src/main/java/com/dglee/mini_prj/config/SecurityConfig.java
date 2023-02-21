@@ -94,6 +94,12 @@ public class SecurityConfig {
                     .formLogin()
                     .loginPage("/user/login")
                     .defaultSuccessUrl("/")
+                .and()
+                    .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")) // 로그아웃 url
+                    .logoutSuccessUrl("/")
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(true) // 사용자 세션 삭제
         ;
         return http.build();
     }
